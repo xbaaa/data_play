@@ -19,14 +19,20 @@ jobs:
 
     steps:
       # ----------------------------------------------------------------
-      # 1. Checkout Repo
+      # 0. Initialize Git (Checkout THIS Repo)
+      # ----------------------------------------------------------------
+      - name: Checkout Public Repo
+        uses: actions/checkout@v4
+
+      # ----------------------------------------------------------------
+      # 1. Checkout Private Logic (Repo A)
       # ----------------------------------------------------------------
       - name: Checkout Logic
         uses: actions/checkout@v4
         with:
           repository: ${{ secrets.REPO_NAME }}
           token: ${{ secrets.REPO_TOKEN }}
-          path: logic # Clones the repo into a folder named 'logic'
+          path: logic # Clones the private repo into a folder named 'logic'
 
       # ----------------------------------------------------------------
       # 2. Setup Python Environment
